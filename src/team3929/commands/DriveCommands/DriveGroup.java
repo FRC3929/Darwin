@@ -20,8 +20,6 @@ public class DriveGroup extends CommandGroup{
         addSequential(new RotationCommand(90));
         addSequential(new MagVelCommand(-100,-30));
         addSequential(new RotationCommand(90));
-        //addSequential(new AutoAimDriveCommand());
-        
-        
+        //addSequential(new AutoAimDriveCommand());   
     }
 }

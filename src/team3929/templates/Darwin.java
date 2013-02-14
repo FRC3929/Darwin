@@ -15,6 +15,7 @@ import team3929.commands.CommandBase;
 import team3929.commands.DriveCommands.MagVelCommand;
 import team3929.commands.DriveCommands.DriveGroup;
 import team3929.commands.DriveCommands.TankDriveLogitech;
+import team3929.commands.ShooterCommand;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -51,6 +52,10 @@ public class Darwin extends IterativeRobot {
     public void teleopInit() {
         TankDriveLogitech tank = new TankDriveLogitech();
         tank.start();
+     
+     // probably don't need this
+     //   ShooterCommand shooter = new ShooterCommand();
+     //   shooter.start();
     }
 
     /**

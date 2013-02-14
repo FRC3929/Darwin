@@ -26,19 +26,15 @@ public class RotationCommand extends CommandBase {
     private int terminationCounter = 0;
     double imageMidX;
     final double f = 368;
+    boolean visionServo = false;
 
     public RotationCommand(double gyroSetpoint) {
         this.gyroSetpoint = gyroSetpoint;
-
+        visionServo = false;
     }
 
     public RotationCommand() {
-        imageMidX = SmartDashboard.getNumber("imageX");
-        if (imageMidX < 0) {
-            gyroSetpoint = 0.0;
-        } else {
-            gyroSetpoint = Math.toDegrees(MathUtils.atan2(imageMidX - 160, f));
-        }
+        visionServo = true;
     }
 
     protected void initialize() {
@@ -46,6 +42,17 @@ public class RotationCommand extends CommandBase {
         chassis.startEncoders();
         chassis.resetGyro();
         chassis.resetEncoders();
+
+        if (visionServo) {
+            imageMidX = SmartDashboard.getNumber("imageX");
+            if (imageMidX < 0) {
+                gyroSetpoint = 0.0;
+            } else {
+                gyroSetpoint = Math.toDegrees(MathUtils.atan2(imageMidX - 160, f));
+            }
+        }
+        currSetpoint = 0.0;
+
         double kP = 1.0E-2;
         double kI = 6.0E-4;
         double kD = 0.0;
@@ -65,12 +72,21 @@ public class RotationCommand extends CommandBase {
 
         chassis.setMotorCD(0.0, gyroControl);
 
+        // Update the setpoint in a ramp until you hit the final value
         if (currSetpoint < gyroSetpoint) {
             currSetpoint += setpointIncrement;
+            if (currSetpoint > gyroSetpoint) {
+                currSetpoint = gyroSetpoint;
+            }
         }
         if (currSetpoint > gyroSetpoint) {
             currSetpoint -= setpointIncrement;
+            if (currSetpoint < gyroSetpoint) {
+                currSetpoint = gyroSetpoint;
+            }
         }
+
+
         pidGyro.setSetpoint(currSetpoint);
 
         // Update SmartDashboard
@@ -80,17 +96,12 @@ public class RotationCommand extends CommandBase {
     }
 
     protected boolean isFinished() {
-//        double angle = chassis.getGyro();
-//        double rate = (angle - lastAngle);
-//        lastAngle = angle;
         if ((Math.abs(gyroSetpoint - chassis.getGyro()) <= RobotMap.gyroSetpointTol)) {
             terminationCounter++;
         } else {
             terminationCounter = 0;
         }
         return (terminationCounter > 10);
-        // && (Math.abs(rate) < 0.05)
-
     }
 
     protected void end() {

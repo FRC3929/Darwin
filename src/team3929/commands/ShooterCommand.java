@@ -12,16 +12,18 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author PROGRAMING FRC 2013
  */
 public class ShooterCommand extends CommandBase {
-public ShooterCommand(){
-    requires(shooter);
-}
+
+    public ShooterCommand() {
+        requires(shooter);
+    }
+
     protected void initialize() {
         shooter.configureCAN();
         shooter.startCAN();
     }
 
     protected void execute() {
-        if(shooter.didCANReset()) {
+        if (shooter.didCANReset()) {
             shooter.configureCAN();
             // shooter.startCAN(); //FIXME do we need this???
         }
@@ -39,5 +41,4 @@ public ShooterCommand(){
 
     protected void interrupted() {
     }
-    
 }
