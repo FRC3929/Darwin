@@ -15,7 +15,6 @@ public class OI {
     Joystick attack1;
     Joystick attack2;
     Madcatz madcatz;
-    public Joystick shooterControl;
 
     public OI() {
 

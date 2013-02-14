@@ -16,11 +16,17 @@ public ShooterCommand(){
     requires(shooter);
 }
     protected void initialize() {
-        
+        shooter.configureCAN();
+        shooter.startCAN();
     }
 
     protected void execute() {
-        shooter.spinMotors(oi.shooterControl.getY(), oi.shooterControl.getY(), oi.shooterControl.getY());
+        if(shooter.didCANReset()) {
+            shooter.configureCAN();
+            // shooter.startCAN(); //FIXME do we need this???
+        }
+        double targetMotorVoltage = oi.getAttackY() * 10.5; // maximum voltage when at limit of stick
+        shooter.spinMotors(targetMotorVoltage, targetMotorVoltage, targetMotorVoltage);
     }
 
     protected boolean isFinished() {
@@ -28,6 +34,7 @@ public ShooterCommand(){
     }
 
     protected void end() {
+        shooter.stopCAN();
     }
 
     protected void interrupted() {
