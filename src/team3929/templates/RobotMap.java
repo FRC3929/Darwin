@@ -9,7 +9,9 @@ package team3929.templates;
  * @author 3929ProgrammingTeam test
  */
 public class RobotMap {
-
+    public static final int CANPortFront = 2;
+    public static final int CANPortCenter = 3;
+    public static final int CANPortRear = 4;
     public static final int JoystickOnePort = 1;
     public static final int JoystickTwoPort = 2;
     public static final int MadcatzPort = 3;
