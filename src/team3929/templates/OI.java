@@ -24,25 +24,25 @@ public class OI {
 
     }
 
-    public boolean checkButton(int buttonNumber) {//easier to check if a button is pressed
-        return getJoystick().getButton(buttonNumber);
+    public boolean checkGamepadButton(int buttonNumber) {//easier to check if a button is pressed
+        return getGamepad().getButton(buttonNumber);
     }
 
-    public double getTriggerValue() {//returns madcatz z axis
+    public double getGamepadTriggerValue() {//returns madcatz z axis
         //note that leftTrigger pushes z axi down, as right accomplishes the contrary
-        return getJoystick().getTrigger();
+        return getGamepad().getTrigger();
     }
 
-    public double getLeftY() {//get left joy Y
-        return getJoystick().getLeftY();
+    public double getGamepadLeftY() {//get left joy Y
+        return getGamepad().getLeftY();
     }
 
-    public double getRightY() {//get right joystick Y
-        return getJoystick().getRightY();
+    public double getGamepadRightY() {//get right joystick Y
+        return getGamepad().getRightY();
     }
 
-    public double getLeftX() {
-        return getJoystick().getLeftX();
+    public double getGamepadLeftX() {
+        return getGamepad().getLeftX();
     }
 
     public double getAttackY() {//return attack3 joystick y axis
@@ -81,7 +81,7 @@ public class OI {
         return attack2;
     }
 
-    public Madcatz getJoystick() { //Returns a madcatz
+    public Madcatz getGamepad() { //Returns a madcatz
         return madcatz;
     }
 }

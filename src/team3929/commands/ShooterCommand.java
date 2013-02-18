@@ -4,31 +4,40 @@
  */
 package team3929.commands;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
  *
  * @author PROGRAMING FRC 2013
  */
 public class ShooterCommand extends CommandBase {
 
+    int count = 0;
+
     public ShooterCommand() {
         requires(shooter);
     }
 
     protected void initialize() {
+        shooter.stopCAN();
         shooter.configureCAN();
         shooter.startCAN();
     }
 
     protected void execute() {
         if (shooter.didCANReset()) {
+            shooter.stopCAN();
             shooter.configureCAN();
-            // shooter.startCAN(); //FIXME do we need this???
+            shooter.startCAN();
         }
-        double targetMotorVoltage = oi.getAttackY() * 10.5; // maximum voltage when at limit of stick
+
+        double targetMotorVoltage = oi.getGamepadLeftY() * 15.0; // maximum voltage when at limit of stick
+        if(Math.abs(targetMotorVoltage) < 3.0) {
+            targetMotorVoltage = 0;
+        }
         shooter.spinMotors(targetMotorVoltage, targetMotorVoltage, targetMotorVoltage);
+        if (count % 100 == 0) {
+            shooter.showStats();
+        }
+        count++;
     }
 
     protected boolean isFinished() {

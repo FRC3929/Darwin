@@ -49,8 +49,8 @@ public class TankDriveLogitech extends CommandBase {
         JoyLeftY = -oi.getAttackY();
         JoyRightY = -oi.getAttackX();
         //JoyRightY = -oi.getAttackSecondaryY();
-        MJoyLeftY = -oi.getLeftY();
-        MJoyRightY = -oi.getRightY();
+        MJoyLeftY = -oi.getGamepadLeftY();
+        MJoyRightY = -oi.getGamepadRightY();
         //JoyLeftX = -oi.getLeftX();
 
         //SmartDashboard.putNumber("Gyro: ", chassis.gyro.getAngle());

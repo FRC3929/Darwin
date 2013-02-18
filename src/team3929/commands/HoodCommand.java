@@ -22,30 +22,30 @@ public class HoodCommand extends CommandBase {
     protected void execute() {
         SmartDashboard.putNumber("Pot Accum:",hood.getPotValue());
         if (!hood.isTopLimPressed()) {
-            if (oi.checkAttackButton(5)) {
+            if (oi.checkGamepadButton(5)) {
                 hood.moveDown();
             }
-            else if (!oi.checkAttackButton(5)) {
+            else if (!oi.checkGamepadButton(5)) {
                 hood.stop();
             }  
         } else if (!hood.isBotLimPressed()) {
-            if (oi.checkAttackButton(4)) {
+            if (oi.checkGamepadButton(6)) {
                 hood.moveUp();
             }
-            else if (!oi.checkAttackButton(5) && !oi.checkAttackButton(4)) {
+            else if (!oi.checkGamepadButton(5) && !oi.checkGamepadButton(6)) {
                 hood.stop();
             }  
         } else if (hood.isBotLimPressed() && hood.isTopLimPressed()) {
-            if (oi.checkAttackButton(4)) {
+            if (oi.checkGamepadButton(6)) {
                 hood.moveUp();
-            } else if (!oi.checkAttackButton(4) &&!oi.checkAttackButton(5)) {
+            } else if (!oi.checkGamepadButton(6) &&!oi.checkGamepadButton(5)) {
                 hood.stop();
             }  
-            else if (oi.checkAttackButton(5)) {
+            else if (oi.checkGamepadButton(5)) {
                 hood.moveDown();
             }
         }
-        System.out.println("topLimSwitch:" + hood.topLim.get());
+        
                 
     }
 

@@ -20,7 +20,7 @@ public DigitalInput topLim;
 public DigitalInput botLim;
 public AnalogChannel pot;
   public Hood(){
-      hoodVictor = new Victor(10);
+      hoodVictor = new Victor(3);
       topLim = new DigitalInput(5);
       botLim = new DigitalInput(6);
       pot = new AnalogChannel(2);
