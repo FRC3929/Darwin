@@ -14,41 +14,47 @@ import team3929.commands.HoodCommand;
  *
  * @author Robotics
  */
-public class Hood extends Subsystem{
-public Victor hoodVictor;
-public DigitalInput topLim;
-public DigitalInput botLim;
-public AnalogChannel pot;
-  public Hood(){
-      hoodVictor = new Victor(3);
-      topLim = new DigitalInput(5);
-      botLim = new DigitalInput(6);
-      pot = new AnalogChannel(2);
-  }
+public class Hood extends Subsystem {
+
+    public Victor hoodVictor;
+    public DigitalInput topLim;
+    public DigitalInput botLim;
+    public AnalogChannel pot;
+
+    public Hood() {
+        hoodVictor = new Victor(3);
+        topLim = new DigitalInput(5);
+        botLim = new DigitalInput(6);
+        pot = new AnalogChannel(2);
+    }
 
     protected void initDefaultCommand() {
         setDefaultCommand(new HoodCommand());
     }
-    public double getPotValue(){
+
+    public double getPotValue() {
         return pot.getVoltage();
-        
+
     }
-    public boolean isTopLimPressed(){
+
+    public boolean isTopLimPressed() {
         return topLim.get();
     }
-    public boolean isBotLimPressed(){
+
+    public boolean isBotLimPressed() {
         return botLim.get();
     }
-    public void moveUp(){
-        hoodVictor.set(0.7);
-        
+
+    public void moveUp() {
+        hoodVictor.set(1.0);
+
     }
-    public void moveDown(){
-        hoodVictor.set(-0.7);
+
+    public void moveDown() {
+        hoodVictor.set(-1.0);
     }
 
     public void stop() {
         hoodVictor.set(0.0);
     }
-    
 }

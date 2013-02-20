@@ -26,7 +26,7 @@ public class Chassis extends Subsystem {
     public Chassis() {
 
         drive = new RobotDrive(1, 2);
-        rightEncoder = new Encoder(1, 2, false);
+        rightEncoder = new Encoder(2, 1, false);
         leftEncoder = new Encoder(3, 4, false);
         rightEncoder.setDistancePerPulse(RobotMap.encoderDPP);
         leftEncoder.setDistancePerPulse(RobotMap.encoderDPP);

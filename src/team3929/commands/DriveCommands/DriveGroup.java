@@ -12,14 +12,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class DriveGroup extends CommandGroup{
     public DriveGroup(){
-        addSequential(new MagVelCommand(-100,-30));
-        addSequential(new RotationCommand(90));
-        addSequential(new MagVelCommand(-100,-30));
-        addSequential(new RotationCommand(90));
-        addSequential(new MagVelCommand(-100,-30));
-        addSequential(new RotationCommand(90));
-        addSequential(new MagVelCommand(-100,-30));
-        addSequential(new RotationCommand(90));
-        //addSequential(new AutoAimDriveCommand());   
+        
+        addSequential(new RotationCommand());
+          
     }
 }

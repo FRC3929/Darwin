@@ -44,11 +44,11 @@ public class RotationCommand extends CommandBase {
         chassis.resetEncoders();
 
         if (visionServo) {
-            imageMidX = SmartDashboard.getNumber("imageX");
+            imageMidX = SmartDashboard.getNumber("targetX");
             if (imageMidX < 0) {
                 gyroSetpoint = 0.0;
             } else {
-                gyroSetpoint = Math.toDegrees(MathUtils.atan2(imageMidX - 160, f));
+                gyroSetpoint = -1.0*(Math.toDegrees(MathUtils.atan2(imageMidX - 160, f)));
             }
         }
         currSetpoint = 0.0;
@@ -57,13 +57,14 @@ public class RotationCommand extends CommandBase {
         double kI = 6.0E-4;
         double kD = 0.0;
         pidGyro = new PIDTool(kP, kI, kD, currSetpoint);
+        SmartDashboard.putNumber("Gyro Setpoint:",gyroSetpoint);
     }
 
     protected void execute() {
         double angle = chassis.getGyro();
 
         double gyroControl = pidGyro.computeControl(angle);
-
+        
         if (gyroControl > speedLimit) {
             gyroControl = speedLimit;
         } else if (gyroControl < -speedLimit) {

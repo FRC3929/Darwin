@@ -17,7 +17,7 @@ public class OI {
     Madcatz madcatz;
 
     public OI() {
-
+        
         madcatz = new Madcatz(RobotMap.MadcatzPort);    //Definition
         attack1 = new Joystick(RobotMap.JoystickOnePort);
         attack2 = new Joystick(RobotMap.JoystickTwoPort);

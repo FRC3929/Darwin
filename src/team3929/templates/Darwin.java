@@ -15,6 +15,7 @@ import team3929.commands.CommandBase;
 import team3929.commands.DriveCommands.MagVelCommand;
 import team3929.commands.DriveCommands.DriveGroup;
 import team3929.commands.DriveCommands.TankDriveLogitech;
+import team3929.commands.HoodSetCommand;
 import team3929.commands.ShooterCommand;
 
 /**
@@ -42,6 +43,8 @@ public class Darwin extends IterativeRobot {
     public void autonomousInit() {
         DriveGroup dg = new DriveGroup();
         dg.start();
+        //HoodSetCommand hsc = new HoodSetCommand(2.5);
+        //hsc.start();
     }
 
     public void autonomousPeriodic() {

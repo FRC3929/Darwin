@@ -46,25 +46,13 @@ public class TankDriveLogitech extends CommandBase {
         chassis.checkEncoders();
         SmartDashboard.putNumber("Gyro Angle", chassis.getGyro());
         
-        JoyLeftY = -oi.getAttackY();
+        JoyLeftY  = oi.getAttackY();
         JoyRightY = -oi.getAttackX();
-        //JoyRightY = -oi.getAttackSecondaryY();
-        MJoyLeftY = -oi.getGamepadLeftY();
-        MJoyRightY = -oi.getGamepadRightY();
-        //JoyLeftX = -oi.getLeftX();
-
-        //SmartDashboard.putNumber("Gyro: ", chassis.gyro.getAngle());
-        //SmartDashboard.putDouble("Right Encoder Speed: ", chassis.getRightEncoderSpeed());
-        //SmartDashboard.putDouble("Left Encoder Speed: ", chassis.getLeftEncoderSpeed());
-        
-        //chassis.driveWithJoystick(JoyLeftY, JoyRightY);
-//        if(oi.getJoystick()!=null){
-//            chassis.driveWithJoystick(MJoyLeftY,MJoyRightY);
-//        }
-        //else{
+                
         chassis.setMotorCD(joystickMapper(JoyLeftY), joystickMapper(JoyRightY));
-       //chassis.driveWithJoystick(joystickMapper(JoyLeftY), joystickMapper(JoyRightY));
-        //}
+
+        
+                
     }
 
     protected boolean isFinished() { // called repeatedly and determines if the
