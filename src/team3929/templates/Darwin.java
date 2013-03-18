@@ -11,10 +11,15 @@ package team3929.templates;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team3929.commands.AutoShoot;
 import team3929.commands.CommandBase;
 import team3929.commands.DriveCommands.MagVelCommand;
 import team3929.commands.DriveCommands.DriveGroup;
 import team3929.commands.DriveCommands.TankDriveLogitech;
+import team3929.commands.FeederCommand;
+import team3929.commands.Flick;
+import team3929.commands.FullShooter;
+import team3929.commands.HoodCommand;
 import team3929.commands.HoodSetCommand;
 import team3929.commands.ShooterCommand;
 
@@ -41,10 +46,10 @@ public class Darwin extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousInit() {
-        DriveGroup dg = new DriveGroup();
-        dg.start();
-        //HoodSetCommand hsc = new HoodSetCommand(2.5);
-        //hsc.start();
+        FullShooter fs = new FullShooter();
+        fs.start();
+        AutoShoot as = new AutoShoot();
+        as.start();
     }
 
     public void autonomousPeriodic() {
@@ -53,9 +58,14 @@ public class Darwin extends IterativeRobot {
     }
 
     public void teleopInit() {
-        TankDriveLogitech tank = new TankDriveLogitech();
+        TankDriveLogitech tank = new TankDriveLogitech(.3);
         tank.start();
-     
+        ShooterCommand sc = new ShooterCommand();
+        sc.start();
+        FeederCommand fc = new FeederCommand();
+        fc.start();
+        HoodCommand hc = new HoodCommand();
+        hc.start();
      // probably don't need this
      //   ShooterCommand shooter = new ShooterCommand();
      //   shooter.start();
@@ -65,6 +75,7 @@ public class Darwin extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        
         Scheduler.getInstance().run();
     }
 }

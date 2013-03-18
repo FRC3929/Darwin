@@ -48,13 +48,13 @@ public class RotationCommand extends CommandBase {
             if (imageMidX < 0) {
                 gyroSetpoint = 0.0;
             } else {
-                gyroSetpoint = -1.0*(Math.toDegrees(MathUtils.atan2(imageMidX - 160, f)));
+                gyroSetpoint = 1.0*(Math.toDegrees(MathUtils.atan2(imageMidX - 160, f)));
             }
         }
         currSetpoint = 0.0;
 
         double kP = 1.0E-2;
-        double kI = 6.0E-4;
+        double kI = 5.0E-4;
         double kD = 0.0;
         pidGyro = new PIDTool(kP, kI, kD, currSetpoint);
         SmartDashboard.putNumber("Gyro Setpoint:",gyroSetpoint);

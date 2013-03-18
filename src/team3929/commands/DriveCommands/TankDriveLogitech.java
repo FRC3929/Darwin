@@ -21,9 +21,11 @@ public class TankDriveLogitech extends CommandBase {
     double JoyRightY;
     double MJoyLeftY;
     double MJoyRightY;
+    double factor;
     // int reverser = 1; //This variable will allow for a button to control direction of motors
 
-    public TankDriveLogitech() {
+    public TankDriveLogitech(double factor) {
+        this.factor = factor;
         requires(chassis); // reserve the chassis subsystem
     }
     private double joystickMapper(double x){
@@ -44,13 +46,22 @@ public class TankDriveLogitech extends CommandBase {
 
     protected void execute() { // called repeatedly while the command is running
         chassis.checkEncoders();
-        SmartDashboard.putNumber("Gyro Angle", chassis.getGyro());
+        double valLeft = oi.getGamepadLeftY();
+        double valRight = oi.getGamepadRightY();
         
-        JoyLeftY  = oi.getAttackY();
-        JoyRightY = -oi.getAttackX();
-                
-        chassis.setMotorCD(joystickMapper(JoyLeftY), joystickMapper(JoyRightY));
-
+        SmartDashboard.putNumber("Gyro Angle", chassis.getGyro());
+        if(oi.checkGamepadButton(4)){
+            JoyLeftY  = valLeft * factor;
+            JoyRightY = valRight * -factor;
+        }
+        else{
+            
+        JoyLeftY  = -valLeft;
+        JoyRightY = -valRight;
+        }
+        
+        //chassis.setMotorCD(joystickMapper(JoyLeftY), joystickMapper(JoyRightY));
+        chassis.tankDrive(JoyLeftY, JoyRightY);
         
                 
     }

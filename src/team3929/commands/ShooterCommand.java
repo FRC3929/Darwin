@@ -11,33 +11,28 @@ package team3929.commands;
 public class ShooterCommand extends CommandBase {
 
     int count = 0;
-
+    double targetVoltage;
     public ShooterCommand() {
         requires(shooter);
     }
 
     protected void initialize() {
-        shooter.stopCAN();
-        shooter.configureCAN();
-        shooter.startCAN();
+       
     }
 
     protected void execute() {
-        if (shooter.didCANReset()) {
-            shooter.stopCAN();
-            shooter.configureCAN();
-            shooter.startCAN();
-        }
-
-        double targetMotorVoltage = oi.getGamepadLeftY() * 15.0; // maximum voltage when at limit of stick
-        if(Math.abs(targetMotorVoltage) < 3.0) {
-            targetMotorVoltage = 0;
-        }
-        shooter.spinMotors(targetMotorVoltage, targetMotorVoltage, targetMotorVoltage);
-        if (count % 100 == 0) {
-            shooter.showStats();
-        }
-        count++;
+        
+//        double targetMotorVoltage = -oi.getGamepadLeftY() * 15.0; // maximum voltage when at limit of stick
+//        if(Math.abs(targetMotorVoltage) < 3.0) {
+//            targetMotorVoltage = 0;
+//        }
+//        shooter.spinMotors(targetMotorVoltage, targetMotorVoltage, targetMotorVoltage);
+//        if (count % 100 == 0) {
+//            shooter.showStats();
+//        }
+//        count++;
+        targetVoltage = oi.getAttackY();
+        shooter.spinMotors(targetVoltage,targetVoltage,targetVoltage);
     }
 
     protected boolean isFinished() {
@@ -45,7 +40,7 @@ public class ShooterCommand extends CommandBase {
     }
 
     protected void end() {
-        shooter.stopCAN();
+        
     }
 
     protected void interrupted() {

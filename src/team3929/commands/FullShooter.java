@@ -8,23 +8,15 @@ package team3929.commands;
  *
  * @author Robotics
  */
-public class FrisbeeIntake extends CommandBase {
-
-    public FrisbeeIntake() {
-        requires(intake);
+public class FullShooter extends CommandBase {
+    public FullShooter(){
+        requires(shooter);
     }
-
     protected void initialize() {
     }
 
     protected void execute() {
-        if (oi.checkAttackButton(3)) {
-            intake.pushOut();
-        } else if (!oi.checkAttackButton(3) && !oi.checkAttackButton(2)) {
-            intake.turnOff();
-        } else if (oi.checkAttackButton(2)) {
-            intake.bringIn();
-        }
+        shooter.spinMotors(-1.0, -1.0, -1.0);
     }
 
     protected boolean isFinished() {
@@ -36,4 +28,6 @@ public class FrisbeeIntake extends CommandBase {
 
     protected void interrupted() {
     }
+    
+    
 }

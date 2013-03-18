@@ -16,13 +16,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Feeder extends Subsystem {
 
     public Victor pusher;
-    public DigitalInput limSwitch1;
-    public DigitalInput limSwitch2;
+    public DigitalInput limSwitchBack;
+   
 
     public Feeder() {
         pusher = new Victor(4);
-//    limSwitch1 = new DigitalInput(7);
-//    limSwitch2 = new DigitalInput(8);
+    limSwitchBack = new DigitalInput(7);
     }
 
     protected void initDefaultCommand() {
@@ -42,11 +41,9 @@ public class Feeder extends Subsystem {
         pusher.set(0.0);
     }
     
-//     public boolean isBackLimPressed(){
-//         return !limSwitch2.get();
-//     }
-//     public boolean isFrontLimPressed(){
-//         return !limSwitch1.get();
-//     }
+     public boolean isBackLimPressed(){
+         return !limSwitchBack.get();
+     }
+
     
 }

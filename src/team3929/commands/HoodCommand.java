@@ -21,27 +21,27 @@ public class HoodCommand extends CommandBase {
 
     protected void execute() {
         SmartDashboard.putNumber("Pot Accum:",hood.getPotValue());
-        if (!hood.isTopLimPressed()) {
-            if (oi.checkGamepadButton(5)) {
+        if (hood.isTopLimPressed()) {
+            if (oi.checkAttackButton(8)) {
                 hood.moveDown();
             }
-            else if (!oi.checkGamepadButton(5)) {
+            else if (!oi.checkAttackButton(8)) {
                 hood.stop();
             }  
-        } else if (!hood.isBotLimPressed()) {
-            if (oi.checkGamepadButton(6)) {
+        } else if (hood.isBotLimPressed()) {
+            if (oi.checkAttackButton(9)) {
                 hood.moveUp();
             }
-            else if (!oi.checkGamepadButton(5) && !oi.checkGamepadButton(6)) {
+            else if (!oi.checkAttackButton(8) && !oi.checkAttackButton(9)) {
                 hood.stop();
             }  
-        } else if (hood.isBotLimPressed() && hood.isTopLimPressed()) {
-            if (oi.checkGamepadButton(6)) {
+        } else if (!hood.isBotLimPressed() && !hood.isTopLimPressed()) {
+            if (oi.checkAttackButton(9)) {
                 hood.moveUp();
-            } else if (!oi.checkGamepadButton(6) &&!oi.checkGamepadButton(5)) {
+            } else if (!oi.checkAttackButton(8) &&!oi.checkAttackButton(9)) {
                 hood.stop();
             }  
-            else if (oi.checkGamepadButton(5)) {
+            else if (oi.checkAttackButton(8)) {
                 hood.moveDown();
             }
         }

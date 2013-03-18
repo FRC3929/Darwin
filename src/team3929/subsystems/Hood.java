@@ -38,11 +38,11 @@ public class Hood extends Subsystem {
     }
 
     public boolean isTopLimPressed() {
-        return topLim.get();
+        return !topLim.get();
     }
 
     public boolean isBotLimPressed() {
-        return botLim.get();
+        return !botLim.get();
     }
 
     public void moveUp() {

@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3929.subsystems.Feeder;
 import team3929.subsystems.Hood;
-import team3929.subsystems.Intake;
 import team3929.subsystems.Shooter;
 //import team3929.subsystems.ArmControl;
 import team3929.templates.OI;
@@ -28,7 +27,6 @@ public abstract class CommandBase extends Command {
     // Create a single static instance of all of your subsystems
     public static Chassis chassis = new Chassis();
     public static Shooter shooter = new Shooter();
-    public static Intake intake = new Intake();
     public static Hood hood = new Hood();
     public static Feeder feeder = new Feeder();
 //    public static ArmControl armControl = new ArmControl();

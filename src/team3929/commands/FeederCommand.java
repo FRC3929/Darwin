@@ -6,6 +6,7 @@ package team3929.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3929.commands.CommandBase;
 
 /**
@@ -22,17 +23,7 @@ public class FeederCommand extends CommandBase {
     }
     
     protected void execute() {
-//        if (!feeder.isBackLimPressed() && !feeder.isFrontLimPressed()) {
-        if (oi.checkAttackButton(6)) {
-            
-            feeder.pushForward();
-            Timer.delay(0.4);
-            feeder.stop();
-            Timer.delay(1.0);
-            feeder.bringBack();
-            Timer.delay(0.35);
-            feeder.stop();
-        }
+
         if (oi.checkAttackButton(2)) {
             feeder.bringBack();
         } else if (!oi.checkAttackButton(2) && !oi.checkAttackButton(3)) {
@@ -40,53 +31,10 @@ public class FeederCommand extends CommandBase {
         } else if (oi.checkAttackButton(3)) {
             feeder.pushForward();
         }
-//        } else if (feeder.isBackLimPressed()) {
-//            if (oi.checkAttackButton(3)) {
-//                feeder.pushForward();
-//            } else if (!oi.checkAttackButton(3)) {
-//                feeder.stop();
-//            }            
-////        } else if (feeder.isFrontLimPressed()) {
-//            if (oi.checkAttackButton(6)) {
-//                
-//                feeder.pushForward();
-//                Timer.delay(0.4);
-//                feeder.stop();
-//                Timer.delay(1.0);
-//                feeder.bringBack();
-//                Timer.delay(0.4);
-//                feeder.stop();
-//            }
-//            
-//            if (oi.checkAttackButton(2)) {
-//                feeder.bringBack();
-//            } else if (!oi.checkAttackButton(2)) {
-//                feeder.stop();
-//            }
-        //}
-
-//        if(feeder.isFrontLimPressed()){
-//            if(oi.checkAttackButton(4)){
-//            feeder.bringBack();
-//            }
-//        }
-//        if(feeder.isBackLimPressed()){
-//            if(oi.checkAttackButton(3)){
-//        
-//            feeder.pushForward();
-//            }
-//        }
-        //if(!feeder.isBackLimPressed()&&!feeder.isFrontLimPressed()){
-//       if(oi.checkAttackButton(3)){
-//           feeder.pushForward();
-//       }
-//       else if(!oi.checkAttackButton(2)&&!oi.checkAttackButton(3)){
-//            feeder.stop();
-//       }
-//       else if(oi.checkAttackButton(2)){
-//           feeder.bringBack();
-//       }
-        // }
+        if(CommandBase.oi.checkAttackButton(4)){
+            Flick f = new Flick();
+            f.start();
+        }
     }
     
     protected boolean isFinished() {

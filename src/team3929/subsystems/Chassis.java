@@ -38,7 +38,7 @@ public class Chassis extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new TankDriveLogitech()); // set default command
+        setDefaultCommand(new TankDriveLogitech(.3)); // set default command
     }
 
     public void resetEncoders() {
@@ -99,15 +99,7 @@ public class Chassis extends Subsystem {
         drive.setLeftRightMotorOutputs(common - differential, common + differential);
     }
 
-    public void goBackwards() {
-        drive.tankDrive(-0.8, -0.8);
-    }
-
-    public void turnLeft() { // sets the motor speeds to start a left turn
-        drive.tankDrive(0.0, 0.45);
-    }
-
-    public void driveWithJoystick(double stickLeft, double stickRight) {
+    public void tankDrive(double stickLeft, double stickRight) {
         drive.tankDrive(stickLeft, stickRight);
 
     }
@@ -117,6 +109,6 @@ public class Chassis extends Subsystem {
     }
 
     public void stop() {
-        drive.tankDrive(0, 0);
+        drive.tankDrive(0.0, 0.0);
     }
 }
